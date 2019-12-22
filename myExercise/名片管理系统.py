@@ -3,6 +3,7 @@ users = []
 
 #def fucntions
 def printMenu():
+	'''Print the menu'''
 	print("Name Management System")
 	print("1: Add a new name")
 	print("2: Delete a name")
@@ -12,6 +13,9 @@ def printMenu():
 	print("0: Exit")
 
 def addNewUser():
+	'''Add user to users list'''
+	global users
+
 	new_name = input("Please input new user\'s name:")
 	new_email = input("Please input new user\'s email:")
 	new_phone = input("Please input new user\'s phone number:")
@@ -27,9 +31,13 @@ def addNewUser():
 	print(new_user)
 
 def printUserInfo(user):
+	'''Print a user's information '''
 	print("%s: %s, %s, %s" %(user['name'], user['email'], user['phone'], user['company']))
 
 def findUser():
+	'''Find the user information by username'''
+	global users
+
 	find_name = input("Please input search user\'s name:")
 	find_results = []
 	for user in users:
