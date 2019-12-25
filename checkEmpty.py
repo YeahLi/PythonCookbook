@@ -3,7 +3,7 @@
 #1. Check a string is empty
 string = "   "
 if not string.strip():
-    print "Empty String!"
+    print ("Empty String!")
 
 #2. Check a list is empty
 
@@ -26,6 +26,13 @@ if not dic:
 	print ("dictionary is empty")
 else:
 	print ("dictionary is not empty")
+
+#4. Check a instance
+dog = None
+if not dog:
+    print("dog is None or empty")
+else:
+    print("dog is not None")
 
 #Summary:
 def is_empty(any_structure):

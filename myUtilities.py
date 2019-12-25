@@ -22,3 +22,11 @@ def is_python2():
 	else:
 		print("You are using Python3")
 		return False
+
+#check if a variable is a string
+def is_string(var):
+	return isinstance(var,str)
+
+#check if a variable is an int or a float
+def is_number(var):
+	return isinstance(var,int) or isinstance(var,float)
