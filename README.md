@@ -4,7 +4,7 @@
  1. Python CLI choose Menu -- a name management system: name_manage.py
  2. Check input type -- checkInputType.py 
  3. Check a variable's type  -- checkVariableType.py
- 4. Python 2&3 compatable -- 
+ 4. Python 2&3 compatable -- pythonCompatiable.py
  5. Define a singleton class -- singleton.py
  6. Read a file and handle by line -- word_count.py
  7. Read large file -- read_large_file.py 
