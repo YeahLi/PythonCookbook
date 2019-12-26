@@ -1,5 +1,6 @@
 #global variables
 users = []
+user_db = "user_db.data"
 
 #def fucntions
 def printMenu():
@@ -12,9 +13,22 @@ def printMenu():
 	print("5: Show all users")
 	print("0: Exit")
 
+def saveToFile(file, content):
+	'''try:
+		f = open(file, "w")
+		f.write(content)
+	except Exception as e:
+		raise e
+	finally:
+		f.close()'''
+	with open(file, "w") as f:
+		f.write(content)
+
+
 def addNewUser():
 	'''Add user to users list'''
 	global users
+	global user_db
 
 	new_name = input("Please input new user\'s name:")
 	new_email = input("Please input new user\'s email:")
@@ -28,7 +42,8 @@ def addNewUser():
 	new_user['phone'] = new_phone
 	new_user['company'] = new_company
 	users.append(new_user)
-	print(new_user)
+	#print(new_user)
+	saveToFile(user_db, str(users))
 
 def printUserInfo(user):
 	'''Print a user's information '''
@@ -51,33 +66,53 @@ def findUser():
 		for user in find_results:
 			printUserInfo(user)
 
-while True:
-	#1. print menu
-	printMenu()
-	#2. Input menu choose number
-	num_str = input("Please input function number:")
-	#Check if input is a number.
-	if not num_str.isdigit():
-		print("Invalid input! The function number must be a number.")
-		continue
-	else:
-		num = int(num_str)
+def loadUserDB():
+	global user_db
+	global users
+	
+	try:
+		with open(user_db,"r") as f:
+			users = eval(f.read())
+	except FileNotFoundError:
+		pass
+	except Exception as e:
+		raise e
+	
 
-	#3. execute user's choice
-	if num == 1:
-		addNewUser()
-	elif num == 2:
-		pass
-	elif num == 3:
-		pass
-	elif num == 4:
-		findUser()
-	elif num == 5:
-		for user in users:
-			printUserInfo(user)
+def main():
+	print("Loading users....")
+	loadUserDB()
+	print("Loading users finished.")
+	while True:
+		#1. print menu
+		printMenu()
+		#2. Input menu choose number
+		num_str = input("Please input function number:")
+		#Check if input is a number.
+		if not num_str.isdigit():
+			print("Invalid input! The function number must be a number.")
+			continue
+		else:
+			num = int(num_str)
 
-	elif num == 0:
-		break
-		pass
-	else:
-		print("Your input is invalid, please input again.")
+		#3. execute user's choice
+		if num == 1:
+			addNewUser()
+		elif num == 2:
+			pass
+		elif num == 3:
+			pass
+		elif num == 4:
+			findUser()
+		elif num == 5:
+			for user in users:
+				printUserInfo(user)
+
+		elif num == 0:
+			break
+			pass
+		else:
+			print("Your input is invalid, please input again.")
+
+if __name__ == '__main__':
+	main()

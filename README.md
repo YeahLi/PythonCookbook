@@ -8,6 +8,9 @@
  5. Define a singleton class -- singleton.py
  6. Read a file and handle by line -- word_count.py
  7. Read large file -- read_large_file.py 
+ 8. Module release example -- Package
+ 9. Pass parameter to python program -- pass_args.py
+ 10. Remove duplicate items in list -- remove_duplicate.py
 
 # myUtilities.py
 My own module to quickly use some common functions in development.
