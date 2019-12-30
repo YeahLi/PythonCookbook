@@ -25,3 +25,5 @@ My own module to quickly use some common functions in development.
   1. 九九乘法表 -- [九九乘法表.py](./myExercise/九九乘法表.py)
   2. 名片管理系统 -- [名片管理系统.py](./myExercise/名片管理系统.py) #对于 dictionary 的应用
   3. 飞机大战 -- [飞机大战.py](./myExercise/飞机大战/飞机大战.py) #基于 pygame 的 python OOP实践
+
+  
