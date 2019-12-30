@@ -120,20 +120,20 @@ mystr.splitlines() ==> split string into lines.
 x = [1,2,3,4,5,6]
 + len(x)
 + **Slicing**:  
-x[:3] ==> [1, 2, 3] from index 0 to index 2
-x[3:] ==> [4, 5, 6] from from index 3 to the end
+x[:3] ==> [1, 2, 3] from index 0 to index 2
+x[3:] ==> [4, 5, 6] from from index 3 to the end
 x[-2:] ==> [5, 6] the last two items 
 + Add elements: x.extend(list), x.append(item or list), x.insert(index, item)
 ```python
-a = [11, 22, 33, 44]
-b = [55,66]
+a = [11, 22, 33, 44]
+b = [55,66]
 a.extend(b)
 print(a)
-[11, 22, 33, 44, 55, 66]  
+[11, 22, 33, 44, 55, 66]  
 ################
 a.append(b)
 print(a)
-[11, 22, 33, 44, [55, 66]]
+[11, 22, 33, 44, [55, 66]]
 ```
 + Remove elements: item=x.pop(), x.remove(item), del x[index]
 + Modify element: x[5] = 8
@@ -153,51 +153,51 @@ except ValueError e:
 ```
 b. Search list and get the matched indices
 ```python
-def find_with_list(myList, target):
-	inds = []
-	for i in range(len(myList)):
-		if myList[i] == target:
-			inds += i,
-	return inds
+def find_with_list(myList, target):
+	inds = []
+	for i in range(len(myList)):
+		if myList[i] == target:
+			inds += i,
+	return inds
 ```
 or
 ```python
-indices = [i for i, x in enumerate(aList) if x == 7]
+indices = [i for i, x in enumerate(aList) if x == 7]
 print(indices)
 ```
 + Multidemision Array:
 ```python
-y = [10, 11, 12]
-listOfLists = [x, y] #=> Define two deminsion array
+y = [10, 11, 12]
+listOfLists = [x, y] #=> Define two deminsion array
 [[1, 2, 3, 4, 5, 6, 7, 8, 9], [10, 11, 12]]
 #
 y[1] #=> get the value of an element in a list
 11
 ```
 + **Sort**: x.sort(), x.sort(reverse=True)
-+ Generate a number list: `[i for i in range(10,18)]`
++ Generate a number list: `[i for i in range(10,18)]`
 ```python
 range(10,18)
->> [10, 11, 12, 13, 14, 15, 16, 17] #python2
->> range(10, 18) #python3
+>> [10, 11, 12, 13, 14, 15, 16, 17] #python2
+>> range(10, 18) #python3
 #
-a = [i for i in range(10,18)]
->> [10, 11, 12, 13, 14, 15, 16, 17]
+a = [i for i in range(10,18)]
+>> [10, 11, 12, 13, 14, 15, 16, 17]
 #
-b = [i for i in range(10,18) if i%2 == 0]
->> [10, 12, 14, 16]
+b = [i for i in range(10,18) if i%2 == 0]
+>> [10, 12, 14, 16]
 #
-c = [(i,j) for i in range(3) for j in range(2)]
->> [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]
+c = [(i,j) for i in range(3) for j in range(2)]
+>> [(0, 0), (0, 1), (1, 0), (1, 1), (2, 0), (2, 1)]
 ```
 
 ## 6. Tuple
 `x = (1,2,3)`
 + len(x) => 3
 + x[2] => 6
-+ listOfTuples = [x, y] => [(1, 2, 3), (4, 5, 6)]
++ listOfTuples = [x, y] => [(1, 2, 3), (4, 5, 6)]
 + Unpackage:  
-`age, income = "32, 120000".split(',')`  
+`age, income = "32, 120000".split(',')`  
 `a, b = (b, a)` ==> Swap a and b
 
 ## 7. Dictionary -- a map or hash table
@@ -207,24 +207,24 @@ dic = {"key1":value1, "key2":value2, ... }
 + Delete: del dic['name']
 + Search:  
 ```python
-if dic.get('momo'):
-    print("no momo key")
+if dic.get('momo'):
+    print("no momo key")
 else:
-    print(dic['momo'])
+    print(dic['momo'])
 ```
 + l=dic.keys() and l=dic.values()
 + dic.items() => return list of (key,value) tuples
 ```python
-for key,value in user.items():
-    print(key)
-    print(value)
+for key,value in user.items():
+    print(key)
+    print(value)
 ```
 + Sort dictionary list by key:
 ```python
-users = [{"name":"laowang", "age": 60},{"name":"xiaoming", "age": 10},{"name":"banzhang", "age": 20}]
-users.sort(key=lambda x:x['age'])
-print(users) 
-[{'name': 'xiaoming', 'age': 10}, {'name': 'banzhang', 'age': 20}, {'name': 'laowang', 'age': 60}]
+users = [{"name":"laowang", "age": 60},{"name":"xiaoming", "age": 10},{"name":"banzhang", "age": 20}]
+users.sort(key=lambda x:x['age'])
+print(users) 
+[{'name': 'xiaoming', 'age': 10}, {'name': 'banzhang', 'age': 20}, {'name': 'laowang', 'age': 60}]
 ```
 
 ## 8. Set -- no deplicate element
@@ -232,41 +232,41 @@ a = {11, 22, 33}
 **Note: Set cannot preserve items order.**
 #### a. Remove duplicated items in a list
 ```python
-#Use Set to remove the duplicated items in a list
-a = [11, 22, 33, 11]
-b = set(a)
-a = list(b)
->> [33, 11, 22]
+#Use Set to remove the duplicated items in a list
+a = [11, 22, 33, 11]
+b = set(a)
+a = list(b)
+>> [33, 11, 22]
 ```
 
 #### b. Remove duplicated words in a string
 ```python
-#Use set to remove duplicated words in a string
-s = "hello hello hello hello hello hello how are you"
-words = s.split(" ")
-c = set(words)
-l = list(c)
-s = " ".join(l)
-"you are how hello"
+#Use set to remove duplicated words in a string
+s = "hello hello hello hello hello hello how are you"
+words = s.split(" ")
+c = set(words)
+l = list(c)
+s = " ".join(l)
+"you are how hello"
 ```
 
 #### c. Preserving Order
 ```python
-def unique(sequence):
-    seen = set()
-    return [x for x in sequence if not (x in seen or seen.add(x))]
-#Note that this relies on the fact that set.add() returns None.
+def unique(sequence):
+    seen = set()
+    return [x for x in sequence if not (x in seen or seen.add(x))]
+#Note that this relies on the fact that set.add() returns None.
 ```
 
 ## 9. If Condition -- no switch in python
 If operations: ==, !=, is, is not, and, or, not
 ```python
-if 1 is 3:
-    print("How did that happen?")
-elif 1 > 3:
-    print("Yikes")
+if 1 is 3:
+    print("How did that happen?")
+elif 1 > 3:
+    print("Yikes")
 else:
-    print("All is well with the world")
+    print("All is well with the world")
 ```
 
 ### `==` v.s. `is`
@@ -275,50 +275,50 @@ is check the addresses
 
 ## 10. While loop
 ```python
-x = 0
-while (x < 10):
-  print(x)
-  x += 1
+x = 0
+while (x < 10):
+  print(x)
+  x += 1
 ```
 
 ## 11. For loop -- designed for handling elements in a list.
 ```python
-for x in range(10):
-  if (x is 1):
-    continue
-  if (x > 5):
-    break
-  print(x)
+for x in range(10):
+  if (x is 1):
+    continue
+  if (x > 5):
+    break
+  print(x)
 ```
 
 ## 12. Functions
 ```python
-def SquareIt(x):
-  return x * x
+def SquareIt(x):
+  return x * x
 ```
 ### a. function as a parameter
 ```python
-#pass function as parameter
-def DoSomething(f,x):
-  return f(x)
-print(DoSomething(Square, 3))
+#pass function as parameter
+def DoSomething(f,x):
+  return f(x)
+print(DoSomething(Square, 3))
 ``` 
 ### b. Lambda function -- desinged simple functions.
 `lambda <parameters> : <return expression>`  
-**lambda function is a simple function without name.**
+**lambda function is a simple function without name.**
 ```python
-def test1(a, b):
-    return a+b
-result1 = test1(11,22)
+def test1(a, b):
+    return a+b
+result1 = test1(11,22)
 ```
 equals:
 ```python
-test2 = lambda a,b:a+b
-result2 = test2(11,22)
+test2 = lambda a,b:a+b
+result2 = test2(11,22)
 ```
 Pass Lambda function as a parameter:
 ```python
-print(DoSomething(lambda x: x * x, 3))
+print(DoSomething(lambda x: x * x, 3))
 ```
 ### c. Multiple return values -- Return result is a tuple
 `return a, b, c` ==> called package
@@ -342,18 +342,18 @@ help(test)
 + 1). Must put at the tail of parameter list.
 + 2). Comes with a default value.
 ```python
-def test(a, b =22, c=33):
-    result = a + b + c
-    print("result=%d" %result)
+def test(a, b =22, c=33):
+    result = a + b + c
+    print("result=%d" %result)
 test(11) #=> a=11
 test(11,33) #=> a=11, b=33, c=33
-test(11, c=44) #=> a=11, b=22. c=44
+test(11, c=44) #=> a=11, b=22. c=44
 ``` 
 
 ### g. Flexiable Parameters (不定长参数) -- \*args, \*\*kwargs
 ```python
-def sum_nums(a, b, c=33, *args, **kwargs):
-    print(c)
+def sum_nums(a, b, c=33, *args, **kwargs):
+    print(c)
 	print(args)
 	print(kwargs)
 sum_nums(11,22,66,44,55,task=99,done=89)
@@ -363,8 +363,8 @@ Result:
 11
 22
 66
-(44, 55) => 没有名字的放到*args
-{'task': 99, 'done': 89} => 有名字的放到*kwargs
+(44, 55) => 没有名字的放到*args
+{'task': 99, 'done': 89} => 有名字的放到*kwargs
 ```
 
 ### h. Package and Unpackage:
@@ -376,12 +376,12 @@ sum_nums(11, 22, 33, *A, **B)
 
 ### i. Recursive
 ```python
-def factorial(n):
-    '''n! = n * (n-1) * (n-2) * .... * 1'''
-    if n == 1:
-        return 1
-    else:
-        return n * factorial(n-1)
+def factorial(n):
+    '''n! = n * (n-1) * (n-2) * .... * 1'''
+    if n == 1:
+        return 1
+    else:
+        return n * factorial(n-1)
 #Result:
 factorial(5)
 120
@@ -389,9 +389,9 @@ factorial(5)
 
 ### j. Convert a string to a fuction -- eval()
 ```python
-func_new = input("请输入一个匿名函数:")
-func_new = eval(func_new)
-num = test(11,22,func_new)
+func_new = input("请输入一个匿名函数:")
+func_new = eval(func_new)
+num = test(11,22,func_new)
 print(num)
 ```
 
@@ -419,29 +419,29 @@ id(a) #4443567680 point to the space where storing[100,100]
 ## 14. Exception
 ```python
 try:
-    open("myFile.txt")
-except (NameError,FileNotFoundError) as e:
-    print(e)
-except Exception as e:
-    raise #Will always catch any exception
-else: 
-    print("Will be executed when there's no exception")
-finally: #都会被执行
-    print("Will always be executed")
+    open("myFile.txt")
+except (NameError,FileNotFoundError) as e:
+    print(e)
+except Exception as e:
+    raise #Will always catch any exception
+else: 
+    print("Will be executed when there's no exception")
+finally: #都会被执行
+    print("Will always be executed")
 ```
 
 ## 15. Pass parameters to Python program -- sys.argv
 ```python
 '''
-Usage: 
-python pass_args.py henry
->> ['pass_args.py', 'henry']
->> Welcome henry
+Usage: 
+python pass_args.py henry
+>> ['pass_args.py', 'henry']
+>> Welcome henry
 '''
-import sys
+import sys
 print(sys.argv)
-name = sys.argv[1] # 0->program file, 1->first parameter, ....  
-print("Welcome %s" %name)
+name = sys.argv[1] # 0->program file, 1->first parameter, ....  
+print("Welcome %s" %name)
 ```
 
 ## 16. File Operation
@@ -449,8 +449,8 @@ print("Welcome %s" %name)
 #### b. Close a file: `f.close`
 #### More elegant way:
 ```python
-with open('path/to/file.txt', "r") as fp:
-    # do stuff with fp
+with open('path/to/file.txt', "r") as fp:
+    # do stuff with fp
 ```
 #### c. Read a file:
 + 1) f.read()  ==> read all content and return a string
@@ -559,7 +559,7 @@ class Test(object):
 ## Example:
 ```python
 class Animal(object):
-    """docstring for Animal"""
+    """docstring for Animal"""
 
     def __init__(self, spicy, name, age):
         super(Animal, self).__init__()
@@ -579,20 +579,20 @@ class Animal(object):
     def __sendMsg(self):
         print("%s is saying hello to you" %self.name)
 
-    #public methods 
+    #public methods 
     def bark(self):
-        print("%s is barking" %self.name)
+        print("%s is barking" %self.name)
         #call private method
         self.__sendMsg()
 
     def drink(self):
-        print("%s is drinking" %self.name)
+        print("%s is drinking" %self.name)
 
     def getAge(self):
         return self.__age
 
 class Cat(Animal):
-    """docstring for Cat"""
+    """docstring for Cat"""
     # Define class property
     instance_num = 0
 
@@ -613,10 +613,10 @@ class Cat(Animal):
         cls.instance_num += 1
 
     def catch(self):
-        print("%s can catch mouse." %self.name)
+        print("%s can catch mouse." %self.name)
 
 class Dog(Animal):
-    """docstring for Dog"""
+    """docstring for Dog"""
     def __init__(self, name, age):
         super(Dog, self).__init__("dog", name, age)
     
@@ -668,26 +668,26 @@ animal.test()
 
 ## 18. Singleton
 ```python
-class Tool(object):
-    """Singleton Example"""
-    singleton = None
-    name = None
- 
-    def __new__(cls):
-        if not cls.singleton:
-            cls.singleton = object.__new__(cls)
-        return cls.singleton
- 
-    def __init__(self, name):
-        if not Tool.name:
-            Tool.name = name
- 
-a = Tool()
+class Tool(object):
+    """Singleton Example"""
+    singleton = None
+    name = None
+
+    def __new__(cls):
+        if not cls.singleton:
+            cls.singleton = object.__new__(cls)
+            return cls.singleton
+ 
+    def __init__(self, name):
+        if not Tool.name:
+    Tool.name = name
+ 
+a = Tool()
 print(id(a))
- 
-b = Tool()
+ 
+b = Tool()
 print(id(b))
-b = Tool()
+b = Tool()
 print(id(b))
 ```
 
@@ -738,18 +738,18 @@ from myUtilities import *
 + Import dead loop:  
 a.py
 ```python
-import b
-def a():
-    print("--- 1 ---")
-    b()
+import b
+def a():
+    print("--- 1 ---")
+    b()
 a()
 ```
 b.py
 ```python
-import a
-def b():
-    print("---2---")
-    a()
+import a
+def b():
+    print("---2---")
+    a()
 ```
 
 ### d. pycache: 
@@ -775,8 +775,8 @@ When a module is imported at the first time, python engine will run and compiled
 1. `touch setup.py`
 2. `vi setup.py`: 
     ```python
-    from distutils.core import setup
-    setup(name="HenryUtilities", version="1.0", description="My own module to quickly use some common functions in development.", author="Henry Li", py_modules=['HenryUtilities.myUtilities'])
+    from distutils.core import setup
+    setup(name="HenryUtilities", version="1.0", description="My own module to quickly use some common functions in development.", author="Henry Li", py_modules=['HenryUtilities.myUtilities'])
     ```
 3. `python setup.py build`
 4. `python setup.py sdist` ==> generate a tar file "HenryUtilities-1.0.tar.gz"
