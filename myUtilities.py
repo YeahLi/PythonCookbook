@@ -1,6 +1,8 @@
 '''APIs:
-is_empty(any_structure) : check if an object is empty 
-is_python2() : check if the running environment is Python2
+is_empty(any_structure): check if an object is empty 
+is_python2(): check if the running environment is Python2
+is_string(var): check if a variable is a string
+is_number(var): check if a variable is an int or a float
 '''
 
 #check if an object is empty
