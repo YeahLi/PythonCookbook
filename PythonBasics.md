@@ -642,3 +642,77 @@ print(id(b))
 b = Tool()
 print(id(b))
 ```
+
+## 19. Module -- just a py file
+### a. Define:
+
++ `__name__`: stands for `__main__` in module itself and stands for module's name if being imported.  
+In every module, you must add:
+```python
+if __name__ == '__main__':
+    main()
+```
++ `__all__=["func1", "func2"]`==> Specify which items can be imported.
+
+### b. Search Path
+Read this [link](https://leemendelowitz.github.io/blog/how-does-python-find-packages.html) for more details.
+1. Local directory.
+2. Directories listed in your `PYTHONPATH` environment variable.
+3. Installation-dependent default paths, which are controlled by the `site` module.
+
+### c. import
+
++ Normal import:
+```python
+import myUtilities
+myUtilities.is_number()
+```
+
++ Import by using an alias:
+```python
+import myUtilities as myUtil
+myUtil.is_number()
+```
+
++ Import some items to be used directly:
+```python
+from myUtilities import is_number, is_string
+is_number()
+```
+Import all: try to avoid use in this way because it may cause the methods with same name in different modules cannot be used at the same time.
+```python
+from myUtilities import *
+```
+
+### d. pycache: 
+When a module is imported at the first time, python engine will run and compiled it to a pyc file. So the next time, the import module can use it directly.
+
+### e. Create a package -- a directory with modules
+
+1. Create a package directory called TestMsg
+2. Create a file named as __init__.py: touch TestMsg/__init__.py
+3. vi \_\_init\_\_.py  
+    ```python
+    __all__ = ["myUtilities"] #=> 用于规定能使用的模块
+    from . import myUtilities #=> import 之后可以使用 TestMsg.myUtilities.is_number()
+    ```
+4. Create a testing file:
+    ```python
+    import TestMsg
+    TestMsg.myUtilities.is_number()
+    ```
+
+### f. Release a package
+
+1. `touch setup.py`
+2. `vi setup.py`: 
+    ```python
+    from distutils.core import setup
+    setup(name="HenryUtilities", version="1.0", description="My own module to quickly use some common functions in development.", author="Henry Li", py_modules=['HenryUtilities.myUtilities'])
+    ```
+3. `python setup.py build`
+4. `python setup.py sdist` ==> generate a tar file "HenryUtilities-1.0.tar.gz"
+5. Install:  
+    `tar -xzvf HenryUtilities-1.0.tar.gz`  
+    `sudo python setup.py install`
+
