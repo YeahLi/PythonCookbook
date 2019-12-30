@@ -269,6 +269,10 @@ else:
     print("All is well with the world")
 ```
 
+### `==` v.s. `is`
+== check the values
+is check the addresses
+
 ## 10. While loop
 ```python
 x = 0
@@ -410,6 +414,7 @@ id(a) #4442522880
 a= a + a
 id(a) #4443567680 point to the space where storing[100,100]
 ```
+**Explanation:**
 
 ## 14. Exception
 ```python
@@ -502,12 +507,55 @@ os.changedir("../")
 ```
 
 ## 17. Python OOP
-### a. Default methods: `__new__(cls)`,`__init__(self,...)`,`__str__(self)`,`__del__(self)`
-### b. Public attributes and methods: `self.attr=xxx` and `def foo(self):`
-### c. Private attributes and methods: `self.__age=0` and `def __sendMsg():`
-### d. Class attributes and methods: `num = 0` and `@classmethod def add_num(cls):`
-### e. Static method: `@staticmethod def printMenu():`
-### f. Class reference: self, super(), cls
+### a. Magic methods: `__new__(cls)`,`__init__(self,...)`,`__str__(self)`,`__del__(self)`
+### b. Public properties and methods: `self.attr=xxx` and `def foo(self):`
+### c. Private properties and methods: `self.__age=0` and `def __sendMsg():`  
+    Prinvate property and method cannot be inherited.
+    Because python scretly change the name to _ClassName__age.
+
+### d. Property -- setter and getter methods for private properties.
+    private_var = property(getter, setter)
+```python
+class Test(object):
+    def __init__(self):
+        super(Test, self).__init__()
+        self.__num = 100
+
+    def setNum(self, num):
+        self.__num = num
+
+    def getNum(self):
+        return self.__num
+
+    num = property(getNum, setNum)
+
+t = Test()
+t.num = 200
+print(t.num)
+```
+
+    Another way:
+```python
+class Test(object):
+    def __init__(self):
+        super(Test, self).__init__()
+        self.__num = 100
+
+    @property
+    def num(self):
+        return self.__num
+
+    @num.setter
+    def setNum(self, num):
+        self.__num = num
+
+    @num.getter
+    def getNum(self):
+        return self.__num
+```
+### e. Class properties and methods: `num = 0` and `@classmethod def add_num(cls):`
+### f. Static method: `@staticmethod def printMenu():`
+### g. Class reference: self, super(), cls
 ## Example:
 ```python
 class Animal(object):
@@ -515,10 +563,10 @@ class Animal(object):
 
     def __init__(self, spicy, name, age):
         super(Animal, self).__init__()
-        #define public attributes
+        #define public properties
         self.spicy = spicy 
         self.name = name
-        #define private attributes
+        #define private properties
         self.__age = age
 
     def __str__(self):
@@ -545,12 +593,12 @@ class Animal(object):
 
 class Cat(Animal):
     """docstring for Cat"""
-    # Define class attribute
+    # Define class property
     instance_num = 0
 
     def __init__(self, name, age):
         super(Cat, self).__init__("cat", name, age)
-        #Use class attribute
+        #Use class property
         Cat.instance_num += 1
 
     def __str__(self):
@@ -559,7 +607,7 @@ class Cat(Animal):
     def __del__(self):
         super().__del__()
 
-    # Define class attribute
+    # Define class property
     @classmethod
     def add_num(cls):
         cls.instance_num += 1
@@ -591,13 +639,13 @@ dog = Dog("wangwang", 4)
 # Test __str__(self) method
 print(cat)
 
-#Visit public attributes
+#Visit public properties
 print(cat.name)
 
 #Call public method
 cat.bark()
 
-#Visit class attribute
+#Visit class property
 print(Cat.instance_num)
 print(cat.instance_num)
 
@@ -655,10 +703,11 @@ if __name__ == '__main__':
 + `__all__=["func1", "func2"]`==> Specify which items can be imported.
 
 ### b. Search Path
-Read this [link](https://leemendelowitz.github.io/blog/how-does-python-find-packages.html) for more details.
-1. Local directory.
-2. Directories listed in your `PYTHONPATH` environment variable.
-3. Installation-dependent default paths, which are controlled by the `site` module.
+You can gete it from following commands:
+```python
+import sys
+sys.path
+```
 
 ### c. import
 
@@ -682,6 +731,25 @@ is_number()
 Import all: try to avoid use in this way because it may cause the methods with same name in different modules cannot be used at the same time.
 ```python
 from myUtilities import *
+```
+
++ reload(module)
+
++ Import dead loop:  
+a.py
+```python
+import b
+def a():
+    print("--- 1 ---")
+    b()
+a()
+```
+b.py
+```python
+import a
+def b():
+    print("---2---")
+    a()
 ```
 
 ### d. pycache: 
