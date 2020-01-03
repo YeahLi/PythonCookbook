@@ -1,7 +1,7 @@
 # PythonCookbook
  Include some code snip in real project for future reference
 
- 0. My python summary: [PythonBasics.md](./PythonBasics.md)
+ 0. My python summary: [PythonBasics.md](./PythonBasics.md) [PythonAdvanced.md](./PythonAdvanced.md)
  1. Python CLI choose Menu -- a name management system: [name_manage.py](./name_manage.py)
  2. Check input type -- [checkInputType.py](./checkInputType.py)
  3. Check a variable's type  -- [checkVariableType.py](./checkVariableType.py)
