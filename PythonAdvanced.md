@@ -379,3 +379,18 @@ map(lambda x: x*x, [1, 2, 3])
 # map function needs two parameters
 map(lambda x,y: x+y, [1,2,3], [4,5,6])
 ```
+
+## 12. Garbage Collection
+### a. small integer object pool
+整数在程序中的使用非常广泛，Python为了优化速度，使用了小整数对象池， 避免为整数频繁申请和销毁内存空间。 
+Python 对小整数的定义是 [-5, 257) 这些整数对象是提前建立好的，不会被 垃圾回收。在一个 Python 的程序中，所有位于这个范围内的整数使用的都是同一个对象. 
+同理，单个字母也是这样的。
+
+### b. intern 
+Every string without any whitespaces shares the same memory space.
+让他只占用一个”HelloWorld”所 占的内存空间。靠引用计数去维护何时释放。 
+单个单词，不可修改，默认开启intern机制，共用对象，引用计数为0， 则销毁 
+字符串(含有空格)，不可修改，没开启intern机制，不共用对象，引用 计数为0，销毁
+
+### c.GC
+python采用的是引用计数机制为主，标记-清除(Ruby用"地球停转垃圾回收大法" )和分代收集(call gc.collect())两种机制为辅的策略
