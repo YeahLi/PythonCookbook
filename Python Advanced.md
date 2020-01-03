@@ -27,22 +27,22 @@ id(c[0]) != id(e[0])
 class Test(object):
     def __init__(self):
         super(Test, self).__init__()
-        self.__num = 100
+        self.__num = 100 #1
  
     @property
-    def num(self):
+    def num(self): #2
         return self.__num
  
     @num.setter
-    def setNum(self, num):
+    def setNum(self, num): #3
         self.__num = num
  
     @num.getter
-    def getNum(self):
+    def getNum(self): #4
         return self.__num
 
 t = Test()
-t.num =200
+t.num =200 #5
 print(t.num)
 ```
 
@@ -63,7 +63,7 @@ print ([])
 ```python
 def run(self):
 	pass
-P.run = type.MehodType(run, P) #MetaClass 
+P.run = type.MehodType(run, P) #type 是默认创建 metaclass 的方法
 ```
 + add class method:
 ```python
@@ -81,8 +81,9 @@ Person.testClass2 = testClass2
 ```
 
 ### c. Check bound result:`dir(P)`
-### d. __slots__ 
-Specify the attributes belongs to class. Class with __slots__ cannot add or delete any attributes.
+
+### d. __slots__ -- forbid a class being modified dynamically.
+States the attributes belongs to class. Class with __slots__ cannot add or delete any attributes.
 ```python
 class Person(object)
 	__slots__ = ("name", "age")
@@ -94,94 +95,94 @@ class Person(object)
 The space savings is from storing value references in slots instead of __dict__.
 
 ## 4. Generator
-`a = [x*2 for x in range(1000000)]` will return the whole list, which occupies a lot of system resources and will be finnally killed  by kernel.
+List Comprehension `a = [x*2 for x in range(1000000)]` will return the whole list and occupy a lot of system resources. This may be finnally killed  by kernel.
 
 ### a. What is generator?
-⽣成器是这样⼀个函数，它记住上⼀次返回时在函数体中的位置。对⽣成器
-函数的第⼆次（或第 n 次）调⽤跳转⾄该函数中间，⽽上次调⽤的所有局部
-变量都保持不变。
-⽣成器不仅“记住”了它数据状态；⽣成器还“记住”了它在流控制构造（在命令
-式编程中，这种构造不只是数据值）中的位置。
-⽣成器e的特点：
-1. 节约内存
-2. 迭代到下⼀次的调⽤时，所使⽤的参数都是第⼀次所保留下的，即是
-说，在整个所有函数调⽤的参数都是第⼀次所调⽤时保留的，⽽不是新
-创建的
+It is a function that can return the value of during every iteration.
+When return a value, generator will remember the execution postion.
+It will also remember the values of local variables.
 
-### b. Create Generator 1:
+### b. Create Generator by List Comprehensions
 ```python
-G = (x*2 for x in range(5))
+G = (x*2 for x in range(5)) #chang [] to ()
 G
 <generator object <genexpr> at 0x7f626c132db0>
 
 next(G)
 ```
-如果要⼀个⼀个打印出来，可以通过 next() 函数获得⽣成器的下⼀个返回值:
+Generator stores the algorithm. Calling next(G) will return the value of next item. If there's no more element, system will throw StopIterator exception.   
+
+We can use for loop to print out all values.
 ```
 for x in G:
 	print(x)
 ```
 
-### c. Create Generator 2:
+### c. Create Generator by functions
+
 斐波拉契数列（Fibonacci）1, 1, 2, 3, 5, 8, 13, ......
-用列表生成式写不出来，但是用函数却很容易。
+
+List Comprehension cannot achieve this, but it can be easily implemented by functions:
 ```python
 def createNum():
-	listNum = []
-	listNum.append(a)
+	'''create fibonacci number'''
 	a, b = 0, 1
 	for i in range(5):
-		listNum.append(b)
 		print(b)
 		a, b = b, a+b
-	return listNum
+
 createNum()
 ```
-上面的函数出现yield就成了Generator:
+
+Use `yield b` to replace `print(b)`, then the function became a generator. 
 ```python
 def createNum():
 	listNum = []
-	listNum.append(a)
 	a, b = 0, 1
 	for i in range(5):
-		yield b #函数暂停，然后返回b的值
+		yield b #function get suspended and return value b
 		a, b = b, a+b
-a = createNum() #返回生成器对象
+a = createNum() #return generarot object
+'''
 next(a)
 1
 next(a)
 1
 next(a)
 2
+
 for n in a:
 	print(n)
-#生成列表
-[x for x in a]
+'''
+#Generate a list:
+mylist = [x for x in a]
+print(mylist)
 ```
+**Note: Once the generator's point reaches to the end, the next items will return None.**
 
 ### d. send(para):
 ```python
 def test():
     i = 0
     while i < 5:
-        temp = yield i  #temp 在这里等着传入的值，可以用send()传入
+        temp = yield i  #temp is waiting for the agrument from send()
         print(temp)
         i +=1
 
 t = test()
-print(next(t)) #执行到yield时，函数暂停返回 i
+print(next(t)) #when the program readed to yield i, function suspend and return value of i.
 #0
 
-print(next(t)) #函数继续，打印temp，然后回到while进行判断，再执行到yield暂停， 返回 i
+print(next(t)) #function continue, temp=None -> print(temp) -> i+=1 -> while i<5 -> suspend at yield and return i again. 
 #None
 #1
 
-print(t.send("haha"))
+print(t.send("haha")) #use send to pass argument to temp.
 #haha
 #3
 ```
 
-### e. Multitasking -- coroutine used for server
+### e. Generator Usage --  tasks coroutine(协同) on server
 ```python
 def test1():
 	while True:
@@ -200,4 +201,181 @@ while True:
 	next(t2)
 ```
 
-## 6. Iterator
+## 6. Iterator -- Focus on concept
+An object that can be called by next() and return an item.
+
+### a. Iterable Object:
+If an object can be used in for loop, we can this object is iterable.
+
+Iterable objects in Python:
++ list, tuple, set, dict, str
++ generator
+
+### b. Check if an object is iterable
+```python
+from collections import Iterable
+isinstance([], Iterable)
+```
+
+### c. iter(object) -- transfer a list to an iterator
+By default, list,set,dict, etc. are not iterator because they cannot be called by next().
+
+iter(object) can transfer a list(etc.) to an iterator.
+
+## 7. Closure (闭包)
+### a. Fucntion name is the reference of function object
+```python
+def test():
+    print("----1----")
+b = test
+print(test)
+print(b)
+id(b)
+id(test)
+```
+### b. Closure
+A function defines another function and return this function's reference.
+```python
+def test1(number):
+    def test_in(number_in):
+        return number + number_in
+    return test_in
+
+ret = test1(100) # ret is the reference of function test_in(number_in)
+ret2 = ret(200) 
+print(ret2) ==> 300
+```
+
+### c. Usage: ML and math
+```python
+def test(a, b):
+    def test_in(x):
+        return a*x+b
+    return test_in
+
+line1 = test(1,1) #==> modify the origenal test(a,b) object
+line1(0)
+line2 = test(10,4) #==> 开辟一个新的空间存储函数对象
+line2(0)
+```
+
+## 8. Decorator -- 把一个函数当做参数的闭包
+### a. Principal: Use Closure technology to expand a function
+```python
+def w1(func): # pass function as paramenter.
+    def inner():
+        print("verifying....")
+        func()
+    return inner
+
+def f1():
+    print("----f1----")
+
+f1 = w1(f1)
+f1()
+```
+### b. Define a decorator:
+```python
+def w1(func): # pass function as paramenter.
+    def inner():
+        print("verifying....")
+        func()
+    return inner
+
+@w1  #==> equals to f1 = w1(f1)
+def f1():
+    print("----f1----")
+
+f1()
+```
+### c. A function with two decorators
+```python
+def makeBold(fn):
+    def wrapped():
+        print("----1---")
+        return "<b>" + fn() + "</b>"
+    return wrapped
+
+def makeItalic(fn):
+    def italiced():
+        print("----2---")
+        return "<i>" + fn() + "</i>"
+    return wrapped
+
+@makeBold    #==> 2. test3=makeBold(test3)=makeBold(makeItalic(test3))
+@makeItalic  #==> 1. test3=makeItalic(test3)
+def test3():
+    print("----3---")
+    return "hello world-3"
+
+print(test3())
+#<b><i>hello-world-3</i></b>
+```
+
+### d. Expand a function with parameters
+```python
+def func(functionName):
+	def func_in(a, b): 
+		functionName(a, b)
+	return func_in
+
+@func
+def test(a, b):
+	print("----test a=%d, b=%d-----" %(a,b))
+
+test(1, 2)
+```
+### e. General decorator
+```python
+def func(functionName):
+	def func_in(*args, **kwargs): 
+		print("记录日志")
+		ret = functionName(*args, **kwargs)
+		retrun ret
+	return func_in
+
+@func #test = func(test)
+def test(a, b):
+	print("----test a=%d, b=%d-----" %(a,b))
+
+```
+
+## 9. NameSpace
+```python
+a=100 #The namespace of a is current file.
+
+import test
+test.func1() #The namespace of func1() is test.py
+
+from test2 import func2 # func2 is imported to current file's namespace
+
+def test3(a,b):
+	print (a) # The namespace of a is function test3
+	print(b)
+```
+### globals, locals
++ globals() ==> dict, 所有全局变量 key-value paris
++ locals() ==> dict, 所有的局部变量 key-value paris
+
+## 10. PDB -- python debug
+```
+python3 -m pdb test1.py
+
+l : list code 找 "->" 表示当前行
+n(next): 向下执行一行
+c: continue 继续执行代码
+b 7: 在第 7 行添加断点
+clear 7: 删除第 7 行断点
+p a: 打印变量 a的值
+a(args): 打印所有形参（parameter）数据
+s(step) 进入到一个函数
+q(quit) 退出
+```
+## 11. map(func, list1[,list2,..]) -> list
+```python
+# map function needs one parameter
+map(lambda x: x*x, [1, 2, 3])
+
+# map function needs two parameters
+map(lambda x,y: x+y, [1,2,3], [4,5,6])
+```
