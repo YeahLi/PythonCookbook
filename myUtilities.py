@@ -3,6 +3,7 @@ is_empty(any_structure): check if an object is empty
 is_python2(): check if the running environment is Python2
 is_string(var): check if a variable is a string
 is_number(var): check if a variable is an int or a float
+rm_duplicates(list): Remove duplicate items in list.
 '''
 
 #check if an object is empty
@@ -32,6 +33,13 @@ def is_string(var):
 #check if a variable is an int or a float
 def is_number(var):
 	return isinstance(var,int) or isinstance(var,float)
+
+#remove duplicate items in list.
+def rm_duplicates(list):
+    seen = set()
+    #Note that this relies on the fact that set.add() returns None.
+    return [x for x in sequence if not (x in seen or seen.add(x))]
+
 
 def main():
 	'''Used for testing....'''

@@ -21,7 +21,7 @@ else:
 	print("user %s with id %d is NOT in the list" %(user3.name, id(user3)))
 
 '''
-Result: in is only check the reference or numbers or strings
+Result: in only checks the reference or numbers or strings
 
 user heihei with id 4353266704
 user heihei with id 4353266768
