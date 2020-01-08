@@ -16,7 +16,7 @@ Highlight Features:
 ## Techniques
 1. Frontend: Server Admin Website
 **index.html**
-```xml
+```
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% block content %}
@@ -34,7 +34,7 @@ Highlight Features:
 ```
 
 **base.html**
-```xml
+```
 <!DOCTYPE html>
 <html>
 <head>
