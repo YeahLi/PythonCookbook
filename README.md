@@ -8,25 +8,32 @@
 + [SupportTools](./MyProjects/SupportTools.md)
 
 # PythonCookbook
- Include some code snip in real project for future reference
+Include some code snip in real project for future reference
 
- 0. My python summary: [PythonBasics.md](./PythonBasics.md) [PythonAdvanced.md](./PythonAdvanced.md) [PythonMultitasking.md](./PythonMultitasking.md)
- 1. Python CLI choose Menu -- a name management system: [name_manage.py](./name_manage.py)
- 2. Check input type -- [checkInputType.py](./checkInputType.py)
- 3. Check a variable's type  -- [checkVariableType.py](./checkVariableType.py)
- 4. Python 2&3 compatable -- [pythonCompatiable.py](./pythonCompatiable.py)
- 5. Define a singleton class -- [singleton.py](./singleton.py)
- 6. Read a file and handle by line -- [word_count.py](./word_count.py)
- 7. Read a large file -- [read_large_file.py](./read_large_file.py)
- 8. Module release example -- [Package](./Package)
- 9. Pass parameter to python program -- [pass_args.py](./pass_args.py)
- 10. Remove duplicate items in list -- [remove_duplicate.py](./remove_duplicate.py)
- 11. Examples of creating a child process -- [CreateProcess.py](CreateProcess.py)
- 12. Examples of create a threa -- [CreateThread.py](./CreateThread.py)
- 13. Copy a file wiht multiple processes -- [multiprocess_copy.py](./multiprocess_copy.py)
- 14. `if a in list` only checks the reference or numbers or strings. -- [if_in_verify.py](./if_in_verify.py)
- 15. Show current process bar -- [print_process_bar.py](./print_process_bar.py)
- 16. 
+0. My python summary: 
++ [PythonBasics.md](./PythonBasics.md) 
++ [PythonAdvanced.md](./PythonAdvanced.md) 
++ [PythonMultitasking.md](./PythonMultitasking.md)
++ [PythonNetwork.md](./PythonNetwork.md)
++ [Network Basic Knowledge](./Network/Network.md)
+
+1. Python CLI choose Menu -- a name management system: [name_manage.py](./name_manage.py)
+2. Check input type -- [checkInputType.py](./checkInputType.py)
+3. Check a variable's type  -- [checkVariableType.py](./checkVariableType.py)
+4. Python 2&3 compatable -- [pythonCompatiable.py](./pythonCompatiable.py)
+5. Define a singleton class -- [singleton.py](./singleton.py)
+6. Read a file and handle by line -- [word_count.py](./word_count.py)
+7. Read a large file -- [read_large_file.py](./read_large_file.py)
+8. Module release example -- [Package](./Package)
+9. Pass parameter to python program -- [pass_args.py](./pass_args.py)
+10. Remove duplicate items in list -- [remove_duplicate.py](./remove_duplicate.py)
+11. Examples of creating a child process -- [CreateProcess.py](CreateProcess.py)
+12. Examples of create a threa -- [CreateThread.py](./CreateThread.py)
+13. Copy a file wiht multiple processes -- [multiprocess_copy.py](./multiprocess_copy.py)
+14. `if a in list` only checks the reference or numbers or strings. -- [if_in_verify.py](./if_in_verify.py)
+15. Show current process bar -- [print_process_bar.py](./print_process_bar.py)
+16. Use csv module to generate dict
+17. Generate a json file with pretty
 
 # [myUtilities.py](./myUtilities.py)
 My own module to quickly use some common functions in development.
