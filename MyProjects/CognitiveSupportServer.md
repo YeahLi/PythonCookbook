@@ -16,61 +16,9 @@ Highlight Features:
 ## Techniques
 1. Frontend: Server Admin Website
 **index.html**
-```html
-<!DOCTYPE html>
-<!-- {% extends "base.html" %}
-{% block content %}
-    <table id="indexTable">
-        <tr>
-            <td style='width: 300px;'><img class = 'newappIcon' src='/static/images/login_image_175x175.png'>
-            </td>
-            <td>
-                <h1 id = "message">Support Cognitive Server V1.0</h1>
-                <p class='description'></p>Receiving PMR's information from collector and sending information to PMR notifier.
-            </td>
-        </tr>
-    </table>
-{% endblock %} -->
-```
 
 **base.html**
-```html
-<!DOCTYPE html>
-<!-- <html>
-<head>
-    {% if title %}
-    <title>IBM Spectrum Cognitive RESTful Server - {{ title }}</title>
-    {% else %}
-    <title>IBM Spectrum Cognitive RESTful Server</title>
-    {% endif %}
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="/static/stylesheets/style.css" />
-</head>
-<body>
-    <table id="baseTable">
-        <tr>
-            <td>
-                <a href="/index">Home</a>
-            </td>
-            <td>
-                <a href="/SF">SalesForce</a>
-            </td>
-            <td>
-                <a href="/configuration">Settings</a>
-            </td>
-            {% if user == "Admin" %}
-            <td>
-                <a href="/log">Server Log</a>
-            </td>
-            {% endif %}
 
-            <td>{{ user }}</td>
-        </tr>
-    </table>
-    {% block content %}{% endblock %}
-</body>
-</html> -->
-```
 
 2. Backend: REST API to handle multiple requests
 ```python
