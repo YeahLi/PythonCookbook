@@ -16,9 +16,9 @@ Highlight Features:
 ## Techniques
 1. Frontend: Server Admin Website
 **index.html**
-```
+```html
 <!DOCTYPE html>
-{% extends "base.html" %}
+<!-- {% extends "base.html" %}
 {% block content %}
     <table id="indexTable">
         <tr>
@@ -30,13 +30,13 @@ Highlight Features:
             </td>
         </tr>
     </table>
-{% endblock %}
+{% endblock %} -->
 ```
 
 **base.html**
-```
+```html
 <!DOCTYPE html>
-<html>
+<!-- <html>
 <head>
     {% if title %}
     <title>IBM Spectrum Cognitive RESTful Server - {{ title }}</title>
@@ -69,7 +69,7 @@ Highlight Features:
     </table>
     {% block content %}{% endblock %}
 </body>
-</html>
+</html> -->
 ```
 
 2. Backend: REST API to handle multiple requests
