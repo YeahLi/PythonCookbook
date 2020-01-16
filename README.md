@@ -32,8 +32,8 @@ Include some code snip in real project for future reference
 13. Copy a file wiht multiple processes -- [multiprocess_copy.py](./multiprocess_copy.py)
 14. `if a in list` only checks the reference or numbers or strings. -- [if_in_verify.py](./if_in_verify.py)
 15. Show current process bar -- [print_process_bar.py](./print_process_bar.py)
-16. Use csv module to generate dict
-17. Generate a json file with pretty
+16. Use csv module to generate dict [cmdToJSON.py](./cmdToJSON.py)
+17. Generate a json file with pretty [cmdToJSON.py](./cmdToJSON.py)
 
 # [myUtilities.py](./myUtilities.py)
 My own module to quickly use some common functions in development.

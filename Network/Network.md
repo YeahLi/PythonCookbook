@@ -102,5 +102,46 @@ rarp --> 根据 mac 找 ip
 #### TCP 十种状态
 <img src="./tcp2.png" width="500">
 
+#### TCP的2MSL问题
+
+2MSL即两倍的MSL，TCP的TIME_WAIT状态也称为2MSL等待状态。
+
+当TCP的⼀端发起主动关闭，在发出最后⼀个ACK包后，即第3次握 ⼿完成后发送了第四次握⼿的ACK包后就进⼊了TIME_WAIT状态，必须在此状态上停留两倍的MSL时间。
+
+等待2MSL时间主要⽬的是怕最后⼀个ACK包对⽅没收到，那么对⽅在超时后将重发第三次握⼿的FIN包，主动关闭端接到重发的FIN包后可以再发⼀个ACK应答包。
+
+<img src="./tcp3.png" width="500">
+
++ 在TIME_WAIT状态 时两端的端⼝不能使⽤，要等到2MSL时间结束才可继续使⽤。
++ 当连接处于2MSL等待阶段时任何迟到的报⽂段都将被丢弃。
++ 不过在实际应⽤中可以通过设置 SO_REUSEADDR选项达到不必等待2MSL时间结束再使⽤此端⼝。
+
 ### d. UDP
 <img src="./udp.png" width="500">
+
+## 6. 常见网络攻击案例
+
+### a. SYN Flood
+是种典型的DoS (Denial of Service，拒绝服务) 攻击。    
+效果就是服务器TCP连接资源耗尽，停⽌响应正常的TCP连接请求。    
+
+<img src="./SYN_flood.png" width="300">
+
+### b. DNS 攻击
+#### 1) dns服务器被劫持（返回一个假的ip地址）
+
+<img src="./dns_attack1.png" width="600">
+
+#### 2) dns欺骗 (upd广播一个假的ip地址, 去替代cache)
+⽤⼀个假的 DNS 应答来欺骗⽤户计算机，让其相信这个假的地址，并且抛弃真正的 DNS 应答。
+
+<img src="./dns_attack2.png" width="600">
+
+#### 3) ARP attack (伪造数据包)
+
+<img src="./arp_attack1.png" width="600">
+
+## 7. 家庭上网解析
+NAT = modem + router + DHCP
+
+<img src="./home_internet.png" width="700">
